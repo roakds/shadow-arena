@@ -1,0 +1,160 @@
+"""Global settings, constants and balance values for Shadow Arena."""
+import math
+from pathlib import Path
+
+import pygame
+
+# --- Paths (relative to the project root, never absolute) ---
+BASE_DIR = Path(__file__).resolve().parent.parent
+ASSETS_DIR = BASE_DIR / "assets"
+SOUNDS_DIR = ASSETS_DIR / "sounds"
+FONTS_DIR = ASSETS_DIR / "fonts"
+FONT_FILE = FONTS_DIR / "main.ttf"
+MUSIC_FILE = SOUNDS_DIR / "music.wav"
+HIGH_SCORE_FILE = BASE_DIR / "highscore.json"
+
+# --- Window ---
+TITLE = "Shadow Arena"
+SCREEN_WIDTH = 960
+SCREEN_HEIGHT = 540
+SCREEN_CENTER_X = SCREEN_WIDTH // 2
+FPS = 60
+MS_PER_SECOND = 1000
+MAX_FRAME_TIME = 0.05
+
+HUD_HEIGHT = 56
+ARENA_RECT = pygame.Rect(
+    0, HUD_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - HUD_HEIGHT
+)
+ARENA_BORDER_WIDTH = 4
+
+# --- Colors ---
+COLOR_BACKGROUND = (18, 18, 24)
+COLOR_ARENA = (30, 30, 40)
+COLOR_ARENA_BORDER = (70, 70, 90)
+COLOR_HUD_BACK = (12, 12, 16)
+COLOR_TEXT = (230, 230, 235)
+COLOR_TEXT_DIM = (140, 140, 155)
+COLOR_ACCENT = (220, 70, 70)
+COLOR_SELECTED = (255, 210, 90)
+COLOR_HP = (200, 50, 60)
+COLOR_HP_BACK = (60, 20, 25)
+COLOR_PLAYER = (90, 160, 255)
+COLOR_PLAYER_DODGE = (60, 90, 140)
+COLOR_PLAYER_HURT = (255, 255, 255)
+COLOR_SLASH = (255, 255, 255)
+COLOR_PARRY = (255, 210, 90)
+COLOR_ENEMY = (170, 60, 60)
+COLOR_ENEMY_WINDUP = (255, 150, 40)
+COLOR_ENEMY_STAGGER = (120, 120, 140)
+COLOR_PICKUP = (80, 220, 120)
+OVERLAY_COLOR = (0, 0, 0, 160)
+
+# --- Fonts and layout ---
+FONT_SIZES = {"small": 22, "medium": 32, "large": 64}
+TITLE_Y = 100
+INFO_Y = 170
+LINE_SPACING = 36
+MENU_TOP = 320
+MENU_ITEM_SPACING = 56
+MENU_HIT_PADDING = 24
+CONTROLS_TOP = 170
+HUD_PADDING = 16
+HUD_TEXT_Y = HUD_HEIGHT // 2
+HUD_SCORE_X = 300
+HUD_WAVE_X = 520
+HP_BAR_WIDTH = 220
+HP_BAR_HEIGHT = 24
+BAR_BORDER_WIDTH = 2
+
+# --- Controls ---
+KEYS_UP = (pygame.K_w, pygame.K_UP)
+KEYS_DOWN = (pygame.K_s, pygame.K_DOWN)
+KEYS_LEFT = (pygame.K_a, pygame.K_LEFT)
+KEYS_RIGHT = (pygame.K_d, pygame.K_RIGHT)
+KEYS_CONFIRM = (pygame.K_RETURN, pygame.K_SPACE)
+KEYS_PAUSE = (pygame.K_ESCAPE, pygame.K_p)
+KEY_DODGE = pygame.K_SPACE
+
+CONTROLS_LINES = (
+    "WASD / стрелки: движение",
+    "Мышь: направление удара",
+    "ЛКМ: удар",
+    "ПКМ: парирование (точно в момент удара врага)",
+    "Пробел: перекат (неуязвимость)",
+    "Esc / P: пауза",
+)
+CONTROLS_HINT = "Любая клавиша: назад"
+
+# --- Sound ---
+SFX_FILES = {
+    "attack": "attack.wav",
+    "parry": "parry.wav",
+    "pickup": "pickup.wav",
+    "hurt": "hurt.wav",
+}
+MUSIC_VOLUME = 0.3
+SFX_VOLUME = 0.6
+MUSIC_LOOPS = -1
+
+# --- Player balance ---
+PLAYER_SIZE = (28, 28)
+PLAYER_SPEED = 260
+PLAYER_MAX_HP = 5
+PLAYER_ATTACK_DAMAGE = 1
+HIT_INVULNERABLE_TIME = 0.8
+HURT_BLINK_INTERVAL = 0.1
+
+DODGE_SPEED = 620
+DODGE_DURATION = 0.18
+DODGE_COOLDOWN = 0.6
+
+ATTACK_DURATION = 0.15
+ATTACK_COOLDOWN = 0.45
+ATTACK_RANGE = 80
+ATTACK_ARC_ANGLE = 60
+ATTACK_ARC_DOT = math.cos(math.radians(ATTACK_ARC_ANGLE))
+ATTACK_MOVE_FACTOR = 0.4
+SLASH_ANGLES = (-ATTACK_ARC_ANGLE, 0, ATTACK_ARC_ANGLE)
+SLASH_WIDTH = 3
+
+PARRY_WINDOW = 0.25
+PARRY_COOLDOWN = 0.7
+PARRY_RING_RADIUS = 34
+PARRY_RING_WIDTH = 3
+
+# --- Enemy balance ---
+ENEMY_SIZE = (30, 30)
+ENEMY_BASE_HP = 3
+ENEMY_HP_WAVE_STEP = 3
+ENEMY_BASE_SPEED = 90
+ENEMY_SPEED_PER_WAVE = 8
+ENEMY_MAX_SPEED = 170
+ENEMY_DAMAGE = 1
+ENEMY_ATTACK_TRIGGER_RANGE = 55
+ENEMY_ATTACK_RANGE = 70
+ENEMY_WINDUP_TIME = 0.6
+ENEMY_RECOVER_TIME = 0.8
+ENEMY_STAGGER_TIME = 1.5
+STAGGER_DAMAGE_MULTIPLIER = 3
+
+# --- Pickups ---
+PICKUP_SIZE = (16, 16)
+PICKUP_HEAL = 1
+PICKUP_DROP_CHANCE = 0.2
+PICKUP_LIFETIME = 8.0
+
+# --- Waves and score ---
+FINAL_WAVE = 8
+WAVE_BASE_ENEMIES = 3
+WAVE_ENEMY_STEP = 2
+MAX_ENEMIES_ALIVE = 8
+SPAWN_INTERVAL = 1.2
+SPAWN_MIN_DISTANCE = 200
+SPAWN_ATTEMPTS = 10
+WAVE_BREAK_TIME = 2.5
+WAVE_CLEAR_HEAL = 1
+SCORE_KILL = 100
+SCORE_PARRY = 50
+SCORE_WAVE_CLEAR = 250
+SCORE_PICKUP = 25
